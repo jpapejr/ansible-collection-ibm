@@ -22,7 +22,7 @@
     - name: Configure VPC Subnet
       ibm.cloudcollection.ibm_is_subnet:
         ibmcloud_api_key: "{{ ibmcloud_api_key }}"
-        ibmcloud_region: "{{ ibmcloud_region }}"
+        region: "{{ ibmcloud_region }}"
         resource_group: "{{ resource_group }}"
         name: "{{ name_prefix }}-subnet"
         state: available
@@ -40,7 +40,7 @@
     - name: Configure SSH Key
       ibm.cloudcollection.ibm_is_ssh_key:
         ibmcloud_api_key: "{{ ibmcloud_api_key }}"
-        ibmcloud_region: "{{ ibmcloud_region }}"
+        region: "{{ ibmcloud_region }}"
         resource_group: "{{ resource_group }}"
         name: "{{ name_prefix }}-ssh-key"
         public_key: "{{ ssh_public_key }}"
@@ -55,7 +55,7 @@
     - name: Retrieve image list
       ibm.cloudcollection.ibm_is_images_info:
         ibmcloud_api_key: "{{ ibmcloud_api_key }}"
-        ibmcloud_region: "{{ ibmcloud_region }}"
+        region: "{{ ibmcloud_region }}"
         resource_group: "{{ resource_group }}"
       register: images_list
 
@@ -68,7 +68,7 @@
     - name: Configure VSI
       ibm.cloudcollection.ibm_is_instance:
         ibmcloud_api_key: "{{ ibmcloud_api_key }}"
-        ibmcloud_region: "{{ ibmcloud_region }}"
+        region: "{{ ibmcloud_region }}"
         name: "{{ name_prefix }}-vsi"
         state: available
         id: "{{ vsi.id | default(omit) }}"
@@ -91,6 +91,7 @@
     - name: Configure Floating IP Address
       ibm.cloudcollection.ibm_is_floating_ip:
         ibmcloud_api_key: "{{ ibmcloud_api_key }}"
+        region: "{{ ibmcloud_region }}"
         name: "{{ name_prefix }}-fip"
         state: available
         id: "{{ fip.id | default(omit) }}"
@@ -110,6 +111,7 @@
     - name: Configure Security Group Rule to open SSH on the VSI
       ibm.cloudcollection.ibm_is_security_group_rule:
         ibmcloud_api_key: "{{ ibmcloud_api_key }}"
+        region: "{{ ibmcloud_region }}"
         resource_group: "{{ resource_group }}"
         state: available
         group: "{{ vpc.default_security_group }}"
