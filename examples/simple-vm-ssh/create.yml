@@ -7,7 +7,7 @@
     - name: Configure VPC
       ibm.cloudcollection.ibm_is_vpc:
         ibmcloud_api_key: "{{ ibmcloud_api_key }}"
-        ibmcloud_region: "{{ ibmcloud_region }}"
+        region: "{{ ibmcloud_region }}"
         resource_group: "{{ resource_group }}"
         name: "{{ name_prefix }}-vpc"
         state: available
