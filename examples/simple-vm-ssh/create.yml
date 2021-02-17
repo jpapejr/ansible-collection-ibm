@@ -61,7 +61,7 @@
         profile: "{{ vsi_profile }}"
         image: "{{ image_dict[vsi_image] }}"
         keys:
-          - "{{ ssh_key.id }}"
+          - "{{ ssh_key_id }}"
         primary_network_interface:
           - subnet: "{{ subnet.id }}"
         zone: "{{ zone }}"
