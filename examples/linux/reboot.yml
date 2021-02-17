@@ -1,2 +1,6 @@
-- name: Unconditionally reboot the machine with all defaults
-  reboot:
+---
+- name: Reboot machine
+  hosts: localhost
+  tasks:
+    - name: Reboot
+      
