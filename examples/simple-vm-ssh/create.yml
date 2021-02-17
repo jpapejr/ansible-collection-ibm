@@ -37,21 +37,6 @@
         cacheable: True
         subnet: "{{ subnet_create_output.resource }}"
 
-    - name: Configure SSH Key
-      ibm.cloudcollection.ibm_is_ssh_key:
-        ibmcloud_api_key: "{{ ibmcloud_api_key }}"
-        region: "{{ ibmcloud_region }}"
-        resource_group: "{{ resource_group }}"
-        name: "{{ name_prefix }}-ssh-key"
-        public_key: "{{ ssh_public_key }}"
-        id: "{{ ssh_key.id | default(omit) }}"
-      register: ssh_key_create_output
-
-    - name: Save SSH Key as fact
-      set_fact:
-        cacheable: True
-        ssh_key: "{{ ssh_key_create_output.resource }}"
-
     - name: Retrieve image list
       ibm.cloudcollection.ibm_is_images_info:
         ibmcloud_api_key: "{{ ibmcloud_api_key }}"
