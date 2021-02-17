@@ -1,6 +1,6 @@
 ---
 - name: Reboot machine
-  hosts: localhost
+  hosts: "{{ host_target }}"
   tasks:
     - name: Reboot
       reboot:
