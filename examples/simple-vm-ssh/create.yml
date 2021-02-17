@@ -96,7 +96,6 @@
       ibm.cloudcollection.ibm_is_security_group_rule:
         ibmcloud_api_key: "{{ ibmcloud_api_key }}"
         region: "{{ ibmcloud_region }}"
-        resource_group: "{{ resource_group }}"
         state: available
         group: "{{ vpc.default_security_group }}"
         direction: inbound
