@@ -1,2 +1,4 @@
-# from galaxy
-- src: ibm.cloudcollection
+---
+collections:
+# With just the collection name
+- ibm.cloudcollection
