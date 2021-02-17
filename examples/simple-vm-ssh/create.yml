@@ -52,7 +52,7 @@
 
     - name: Retrieve image list
       ibm.cloudcollection.ibm_is_images_info:
-      ibmcloud_api_key: "{{ ibmcloud_api_key }}"
+        ibmcloud_api_key: "{{ ibmcloud_api_key }}"
       register: images_list
 
     - name: Set VM image name/id dictionary fact
