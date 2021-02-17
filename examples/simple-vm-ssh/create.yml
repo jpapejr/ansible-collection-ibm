@@ -21,7 +21,7 @@
         vpc: "{{ vpc_create_output.resource }}"
 
     - name: Configure VPC Subnet
-      bm.cloudcollection.ibm_is_subnet:
+      ibm.cloudcollection.ibm_is_subnet:
         name: "{{ name_prefix }}-subnet"
         state: available
         id: "{{ subnet.id | default(omit) }}"
@@ -36,7 +36,7 @@
         subnet: "{{ subnet_create_output.resource }}"
 
     - name: Configure SSH Key
-      bm.cloudcollection.ibm_is_ssh_key:
+      ibm.cloudcollection.ibm_is_ssh_key:
         name: "{{ name_prefix }}-ssh-key"
         public_key: "{{ ssh_public_key }}"
         id: "{{ ssh_key.id | default(omit) }}"
@@ -48,7 +48,7 @@
         ssh_key: "{{ ssh_key_create_output.resource }}"
 
     - name: Retrieve image list
-      bm.cloudcollection.ibm_is_images_info:
+      ibm.cloudcollection.ibm_is_images_info:
       register: images_list
 
     - name: Set VM image name/id dictionary fact
@@ -58,7 +58,7 @@
                         items2dict(key_name='name', value_name='id') }}"
 
     - name: Configure VSI
-      bm.cloudcollection.ibm_is_instance:
+      ibm.cloudcollection.ibm_is_instance:
         name: "{{ name_prefix }}-vsi"
         state: available
         id: "{{ vsi.id | default(omit) }}"
@@ -78,7 +78,7 @@
         vsi: "{{ vsi_create_output.resource }}"
 
     - name: Configure Floating IP Address
-      bm.cloudcollection.ibm_is_floating_ip:
+      ibm.cloudcollection.ibm_is_floating_ip:
         name: "{{ name_prefix }}-fip"
         state: available
         id: "{{ fip.id | default(omit) }}"
@@ -95,7 +95,7 @@
         msg: "IP Address: {{ fip.address }}"
 
     - name: Configure Security Group Rule to open SSH on the VSI
-      bm.cloudcollection.ibm_is_security_group_rule:
+      ibm.cloudcollection.ibm_is_security_group_rule:
         state: available
         group: "{{ vpc.default_security_group }}"
         direction: inbound
