@@ -8,6 +8,7 @@
       ibm.cloudcollection.ibm_is_vpc:
         ibmcloud_api_key: "{{ ibmcloud_api_key }}"
         ibmcloud_region: "{{ ibmcloud_region }}"
+        resource_group: "{{ resource_group }}"
         name: "{{ name_prefix }}-vpc"
         state: available
         id: "{{ vpc.id | default(omit) }}"
@@ -22,6 +23,7 @@
       ibm.cloudcollection.ibm_is_subnet:
         ibmcloud_api_key: "{{ ibmcloud_api_key }}"
         ibmcloud_region: "{{ ibmcloud_region }}"
+        resource_group: "{{ resource_group }}"
         name: "{{ name_prefix }}-subnet"
         state: available
         id: "{{ subnet.id | default(omit) }}"
@@ -39,6 +41,7 @@
       ibm.cloudcollection.ibm_is_ssh_key:
         ibmcloud_api_key: "{{ ibmcloud_api_key }}"
         ibmcloud_region: "{{ ibmcloud_region }}"
+        resource_group: "{{ resource_group }}"
         name: "{{ name_prefix }}-ssh-key"
         public_key: "{{ ssh_public_key }}"
         id: "{{ ssh_key.id | default(omit) }}"
@@ -53,6 +56,7 @@
       ibm.cloudcollection.ibm_is_images_info:
         ibmcloud_api_key: "{{ ibmcloud_api_key }}"
         ibmcloud_region: "{{ ibmcloud_region }}"
+        resource_group: "{{ resource_group }}"
       register: images_list
 
     - name: Set VM image name/id dictionary fact
@@ -76,6 +80,7 @@
         primary_network_interface:
           - subnet: "{{ subnet.id }}"
         zone: "{{ zone }}"
+        resource_group: "{{ resource_group }}"
       register: vsi_create_output
 
     - name: Save VSI as fact
@@ -90,6 +95,7 @@
         state: available
         id: "{{ fip.id | default(omit) }}"
         target: "{{ vsi.primary_network_interface[0]['id'] }}"
+        resource_group: "{{ resource_group }}"
       register: fip_create_output
 
     - name: Save Floating IP as fact
@@ -104,6 +110,7 @@
     - name: Configure Security Group Rule to open SSH on the VSI
       ibm.cloudcollection.ibm_is_security_group_rule:
         ibmcloud_api_key: "{{ ibmcloud_api_key }}"
+        resource_group: "{{ resource_group }}"
         state: available
         group: "{{ vpc.default_security_group }}"
         direction: inbound
